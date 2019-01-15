@@ -41,6 +41,7 @@ abstract class Message extends BaseMessageDecoder
             $this->addCommonRecordInformation($report, $xmlReport);
             $this->recordDecoder->addBalances($report, $xmlReport);
             $this->recordDecoder->addEntries($report, $xmlReport);
+            $this->recordDecoder->addTransactionSummary($report, $xmlReport);
 
             $reports[] = $report;
         }

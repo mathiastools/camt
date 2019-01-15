@@ -41,6 +41,7 @@ class Message extends BaseMessageDecoder
             $this->addCommonRecordInformation($statement, $xmlStatement);
             $this->recordDecoder->addBalances($statement, $xmlStatement);
             $this->recordDecoder->addEntries($statement, $xmlStatement);
+            $this->recordDecoder->addTransactionSummary($statement, $xmlStatement);
 
             $statements[] = $statement;
         }

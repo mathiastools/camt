@@ -61,7 +61,32 @@ class Record
             $record->addBalance($balance);
         }
     }
-
+    
+    /**
+     * @param DTO\Record       $record
+     * @param SimpleXMLElement $xmlRecord
+     *
+     * @throws \Money\UnknownCurrencyException
+     */
+    public function addTransactionSummary(DTO\Record $record, SimpleXMLElement $xmlRecord)
+    {
+        $totalCreditSummary = new DTO\TotalCreditEntries(
+            (string)$xmlRecord->TxsSummry->TtlCdtNtries->NbOfNtries
+        );
+        $totalCreditSummary->setSum(
+            (string)$xmlRecord->TxsSummry->TtlCdtNtries->Sum,
+            (string)$xmlRecord->Acct->Ccy
+        );
+        $record->addSummary($totalCreditSummary);
+    
+        $totalDebitSummary = new DTO\TotalCreditEntries((string)$xmlRecord->TxsSummry->TtlDbtNtries->NbOfNtries);
+        $totalDebitSummary->setSum(
+            (string)$xmlRecord->TxsSummry->TtlDbtNtries->Sum,
+            (string)$xmlRecord->Acct->Ccy
+        );
+        $record->addSummary($totalDebitSummary);
+    }
+    
     /**
      * @param DTO\Record       $record
      * @param SimpleXMLElement $xmlRecord
