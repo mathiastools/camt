@@ -81,7 +81,7 @@ class Record
         );
         $record->addSummary($totalCreditSummary);
     
-        $totalDebitSummary = new DTO\TotalCreditEntries((string)$xmlRecord->TxsSummry->TtlDbtNtries->NbOfNtries);
+        $totalDebitSummary = new DTO\TotalDebitEntries((string)$xmlRecord->TxsSummry->TtlDbtNtries->NbOfNtries);
         $totalDebitSummary->setSum(
             (string)$xmlRecord->TxsSummry->TtlDbtNtries->Sum,
             (string)$xmlRecord->Acct->Ccy

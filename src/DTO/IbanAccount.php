@@ -14,6 +14,9 @@ class IbanAccount extends Account
      * @var Iban
      */
     private $iban;
+    
+    /** @var string */
+    private $currency;
 
     /**
      * @param Iban $iban
@@ -37,5 +40,25 @@ class IbanAccount extends Account
     public function getIdentification()
     {
         return (string) $this->iban;
+    }
+    
+    /**
+     * @return string
+     */
+    public function getCurrency()
+    {
+        return $this->currency;
+    }
+    
+    /**
+     * @param string $currency
+     *
+     * @return IbanAccount
+     */
+    public function setCurrency($currency)
+    {
+        $this->currency = $currency;
+        
+        return $this;
     }
 }
