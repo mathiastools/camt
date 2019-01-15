@@ -46,7 +46,8 @@ class Record
                         $amount,
                         new Currency($currency)
                     ),
-                    new DateTimeImmutable($date)
+                    new DateTimeImmutable($date),
+                    (string)$xmlBalance->Tp->CdOrPrtry->Cd
                 );
             } else {
                 $balance = DTO\Balance::closing(
@@ -54,7 +55,8 @@ class Record
                         $amount,
                         new Currency($currency)
                     ),
-                    new DateTimeImmutable($date)
+                    new DateTimeImmutable($date),
+                    (string)$xmlBalance->Tp->CdOrPrtry->Cd
                 );
             }
 
