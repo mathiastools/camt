@@ -14,6 +14,11 @@ class Reader
      * @var Config
      */
     private $config;
+    
+    /**
+     * @var MessageFormatInterface
+     */
+    private $messageFormat;
 
     /**
      * @param Config $config
@@ -35,9 +40,9 @@ class Reader
         }
 
         $xmlNs = $document->documentElement->getAttribute('xmlns');
-        $messageFormat = $this->getMessageFormatForXmlNs($xmlNs);
-
-        return $messageFormat->getDecoder()->decode($document);
+        $this->messageFormat = $this->getMessageFormatForXmlNs($xmlNs);
+    
+        return $this->messageFormat->getDecoder()->decode($document);
     }
 
     /**
@@ -92,5 +97,13 @@ class Reader
         }
 
         throw new ReaderException("Unsupported format, cannot find message format with xmlns {$xmlNs}");
+    }
+    
+    /**
+     * @return MessageFormatInterface
+     */
+    public function getMessageFormat()
+    {
+        return $this->messageFormat;
     }
 }
