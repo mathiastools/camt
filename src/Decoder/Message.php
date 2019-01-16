@@ -35,12 +35,13 @@ abstract class Message
         if (isset($xmlGroupHeader->AddtlInf)) {
             $groupHeader->setAdditionalInformation((string) $xmlGroupHeader->AddtlInf);
         }
-
-        if (isset($xmlGroupHeader->MsgRcpt)) {
+        
+        // TODO this is throwing a lot of errors, fix or don't use it for now
+        /*if (isset($xmlGroupHeader->MsgRcpt)) {
             $groupHeader->setMessageRecipient(
                 DTOFactory\Recipient::createFromXml($xmlGroupHeader->MsgRcpt)
             );
-        }
+        }*/
 
         $message->setGroupHeader($groupHeader);
     }
